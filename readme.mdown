@@ -1,0 +1,46 @@
+<h2>The idea</h2>
+
+<p>
+  The main idea behind this framework / starter code is "semanticism." Write classes and IDs that are descriptive to the content, not style attributes like <code>.red</code>, or width of columns like <code>.column-md-1</code>. This way, updates to the content or media queries that change the layout don't render the class names meanliness.
+</p>
+
+<h2>Using the grid</h2>
+
+<p>You have three options for "types" of grids.</p>
+
+<ul>
+  <li><strong>Gutters</strong> &mdash; space between columns only</li>
+  <li><strong>Inset</strong> &mdash; space between columns and on both sides of the grid</li>
+  <li><strong>Edge</strong> &mdash; no space, columns butt up against each other</li>
+</ul>
+
+<p>Let's say you have the below markup and want to make a three column grid with no space surrounding the columns.</p>
+
+        <section>
+          <div>column 1</div>
+          <div>column 2</div>
+          <div>column 3</div>
+        </section>
+
+<p>Start by defining the type of grid in your styles using <code>@extend</code>.</p>
+
+        .section {
+          @extend %edge;
+        } 
+
+In this scenario we want the three <code>div</code>'s to be in thirds. So we target the <code>div</code>'s within <code>section</code> and add <code>@include col(oneThird);</code> to make them into columns.
+
+        .section {
+          @extend %edge;
+          div {
+            @include col(oneThird);
+          }
+        } 
+
+<p>For gutters, or gutters + space around the outside, you would use <code>@extend %gutters</code> and <code>@extend %inset</code> on <code>.section</code>, respectively.</p>
+
+<p>For different column widths simply include the appropriate fraction (like <code>@include col(oneFourth);</code> or <code>@include col(threeFifths);</code>). Check out the _bits.scss file for the full list of available columns.</p>
+
+Enjoy!
+
+[fullwindsor.co](http://fullwindsor.co)

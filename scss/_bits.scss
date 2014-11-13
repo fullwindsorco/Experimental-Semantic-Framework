@@ -1,0 +1,129 @@
+/* 
+========================== variables
+*/
+
+$largeSpace: 60px;
+$mediumSpace: 20px;
+$smallSpace: 10px;
+
+
+/* 
+========================== mixins
+*/
+
+@mixin sprite($pos) {
+  background: transparent url('../images/sprite.svg') no-repeat;
+  background-position: $pos;
+}
+
+@mixin break($point) {
+  @media (max-width: $point) { @content; }
+}
+
+@mixin rangebreak($min, $max) {
+  @media (min-width: $min) and (max-width: $max) { @content; }
+}
+
+/* 
+========================== rows 
+*/
+
+.clearFix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+%gutters {
+  @extend .clearFix;
+  margin-left: -$largeSpace;
+  overflow: hidden;
+  > * {
+    padding-left: $largeSpace;
+  }
+}
+
+%inset {
+  @extend .clearFix;
+  padding: $largeSpace $largeSpace $largeSpace 0;
+  > * {
+    padding-left: $largeSpace;
+  }
+}
+
+%edge {
+  @extend .clearFix;
+  > * {
+    padding-left: 0;
+  }
+}
+
+/* 
+========================== columns 
+*/
+
+@function width($value) {
+  @if $value == one {
+    @return 100%;
+  }
+  @if $value == oneThird {
+    @return 33.33%;
+  }
+  @if $value == twoThirds {
+    @return 66.66%;
+  }
+  @if $value == oneHalf {
+    @return 50%;
+  }
+  @if $value == oneFourth {
+    @return 25%;
+  }
+  @if $value == threeFourths {
+    @return 75%;
+  }
+  @if $value == oneFifth {
+    @return 20%;
+  }
+  @if $value == twoFifths {
+    @return 40%;
+  }
+  @if $value == threeFifths {
+    @return 60%;
+  }
+  @if $value == fourFifths {
+    @return 80%;
+  }
+  @if $value == oneSixth {
+    @return 16.66%;
+  }
+  @if $value == oneEighth {
+    @return 12.5%;
+  }
+  @if $value == sevenEighths {
+    @return 87.5%;
+  }
+  @else { 
+    @return $value; 
+  }
+}
+
+@mixin col($width, $order: null) {
+  @if $order {
+    &:nth-child(#{$order}) {
+      float: left;
+      width: width($width);
+      @content;
+    }
+  }
+  @else {
+    float: left;
+    width: width($width);
+  }
+}
+
+
+
+
+

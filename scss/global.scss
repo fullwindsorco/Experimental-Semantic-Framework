@@ -1,0 +1,11 @@
+@import "compass/css3";
+@import "normalize";
+@import "bits";
+ 
+section {
+	@extend %edge;
+	div {
+		@include col(oneThird);
+		border: solid thin green;
+	}
+}

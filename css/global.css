@@ -1,0 +1,74 @@
+/* line 1, ../scss/_normalize.scss */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td, hr {
+  margin: 0;
+  padding: 0; }
+
+/* line 5, ../scss/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 9, ../scss/_normalize.scss */
+fieldset, img {
+  border: 0; }
+
+/* line 12, ../scss/_normalize.scss */
+address, caption, cite, code, dfn, em, strong, th, var {
+  font-style: normal;
+  font-weight: normal; }
+
+/* line 16, ../scss/_normalize.scss */
+ol, ul {
+  list-style: none; }
+
+/* line 19, ../scss/_normalize.scss */
+caption, th {
+  text-align: left; }
+
+/* line 22, ../scss/_normalize.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal; }
+
+/* line 26, ../scss/_normalize.scss */
+q:before, q:after {
+  content: ''; }
+
+/* line 29, ../scss/_normalize.scss */
+abbr, acronym {
+  border: 0; }
+
+/* line 32, ../scss/_normalize.scss */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0; }
+
+/* 
+========================== variables
+*/
+/* 
+========================== mixins
+*/
+/* 
+========================== rows 
+*/
+/* line 32, ../scss/_bits.scss */
+.clearFix:after, section:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/* line 58, ../scss/_bits.scss */
+section > * {
+  padding-left: 0; }
+
+/* 
+========================== columns 
+*/
+/* line 7, ../scss/global.scss */
+section div {
+  float: left;
+  width: 33.33%;
+  border: solid thin green; }
