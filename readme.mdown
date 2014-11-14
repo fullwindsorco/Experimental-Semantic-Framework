@@ -1,12 +1,12 @@
 # Semantic, responsive grid system
 
-We developed this system with the goal of being as semantic as possible while minimizing CSS bloat. This allows one to write classes and IDs that are descriptive to the content, as opposed to style attributes like <code>.red</code>, or width of columns like <code>.column-md-1</code>. This way, updates to the content or media queries that change the layout don't render the class names meanliness. 
+We developed this system with the goal of being as semantic as possible while minimizing CSS bloat. This allows us to write classes and IDs that are descriptive to the content, not to style attributes like <code>.red</code>, or width of columns like <code>.column-md-1</code>. This way, our markup doesn't become meaningless when media queries change the layout, or when content is updated.
 
-Essentially we're keeping the defnition of page layout out of the markup and in the stylesheet. Note: this systems relies heavily on SASS.
+Essentially, we're keeping layout and style declarations in the stylesheet and out of the markup. Note: this system relies heavily on SASS.
 
 # Using the grid
 
-You have three options for "types" of grids.
+There are three types of "grids" available:
 
 <ul>
   <li><strong>Gutters</strong> &mdash; space between columns only</li>
@@ -14,7 +14,7 @@ You have three options for "types" of grids.
   <li><strong>Edge</strong> &mdash; no space, columns butt up against each other</li>
 </ul>
 
-<p>Let's say you have the below markup and want to make a four column grid with no space surrounding the columns.</p>
+<p>Let's say you have the markup below and want to make a four column grid with no space around the columns.</p>
 
     <section>
       <div>column 1</div>
@@ -29,7 +29,7 @@ Start by defining the type of grid in your styles using <code>@extend</code>. In
       @extend %edge;
     } 
 
-Because we want the four <code>div</code>s to be in fouths, we target the <code>div</code>s within <code>section</code> and add <code>@include col(oneFourth);</code> to make them into columns.
+Because we want the four <code>div</code>s to be in fourths, we target the <code>div</code>s within <code>section</code> and add <code>@include col(oneFourth);</code> to make them into columns.
 
     section {
       @extend %edge;
@@ -40,11 +40,11 @@ Because we want the four <code>div</code>s to be in fouths, we target the <code>
 
 ### Gutters and inset
 
-To apply "gutters" or "inset," you would use <code>@extend %gutters</code> and <code>@extend %inset</code> on <code>.section</code>, respectively.
+To apply "gutters" or "inset," use <code>@extend %gutters</code> and <code>@extend %inset</code> on <code>section</code>, respectively.
 
 ### Column widths
 
-For different column widths simply spell out the desired column width in fractions within the include. For example <code>@include col(oneThird)</code> or <code>@include col(threeFifths)</code>. 
+For different column widths, simply spell out the desired column width in fractions within the include. For example <code>@include col(oneThird)</code> or <code>@include col(threeFifths)</code>. 
 
 Check out the _bits.scss file for the full list of available columns. Make sure to use the correct capitalization&mdash;lowercase first then uppercase.
 
