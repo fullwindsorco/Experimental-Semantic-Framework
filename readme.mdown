@@ -1,12 +1,12 @@
-<h2>The idea</h2>
+# Start SASS framework
 
-<p>
-  The main idea behind this framework / starter code is "semanticism." Write classes and IDs that are descriptive to the content, not style attributes like <code>.red</code>, or width of columns like <code>.column-md-1</code>. This way, updates to the content or media queries that change the layout don't render the class names meanliness.
-</p>
+We developed this framework / starter code with the goal of being as semantic as possible while minimizing CSS bloat. This system allows one to write classes and IDs that are descriptive to the content, as opposed to style attributes like <code>.red</code>, or width of columns like <code>.column-md-1</code>. This way, updates to the content or media queries that change the layout don't render the class names meanliness. 
 
-<h2>Using the grid</h2>
+Essentially we're keeping the defnition of page layout out of the markup and in the stylesheet. Note: this systems relies heavily on SASS.
 
-<p>You have three options for "types" of grids.</p>
+# Using the grid
+
+You have three options for "types" of grids.
 
 <ul>
   <li><strong>Gutters</strong> &mdash; space between columns only</li>
@@ -14,33 +14,76 @@
   <li><strong>Edge</strong> &mdash; no space, columns butt up against each other</li>
 </ul>
 
-<p>Let's say you have the below markup and want to make a three column grid with no space surrounding the columns.</p>
+<p>Let's say you have the below markup and want to make a four column grid with no space surrounding the columns.</p>
 
-        <section>
-          <div>column 1</div>
-          <div>column 2</div>
-          <div>column 3</div>
-        </section>
+    <section>
+      <div>column 1</div>
+      <div>column 2</div>
+      <div>column 3</div>
+      <div>column 4</div>
+    </section>
 
-<p>Start by defining the type of grid in your styles using <code>@extend</code>.</p>
+Start by defining the type of grid in your styles using <code>@extend</code>. In this case we'll use <code>%edge</code> to avoid any space around the columns.
 
-        .section {
-          @extend %edge;
-        } 
+    section {
+      @extend %edge;
+    } 
 
-In this scenario we want the three <code>div</code>'s to be in thirds. So we target the <code>div</code>'s within <code>section</code> and add <code>@include col(oneThird);</code> to make them into columns.
+Because we want the four <code>div</code>s to be in fouths, we target the <code>div</code>s within <code>section</code> and add <code>@include col(oneThird);</code> to make them into columns.
 
-        .section {
-          @extend %edge;
-          div {
-            @include col(oneThird);
-          }
-        } 
+    section {
+      @extend %edge;
+      div {
+        @include col(oneThird);
+      }
+    } 
 
-<p>For gutters, or gutters + space around the outside, you would use <code>@extend %gutters</code> and <code>@extend %inset</code> on <code>.section</code>, respectively.</p>
+### Gutters and inset
 
-<p>For different column widths simply include the appropriate fraction (like <code>@include col(oneFourth);</code> or <code>@include col(threeFifths);</code>). Check out the _bits.scss file for the full list of available columns.</p>
+To apply "gutters" or "inset," you would use <code>@extend %gutters</code> and <code>@extend %inset</code> on <code>.section</code>, respectively.
 
-Enjoy!
+### Column widths
 
-[fullwindsor.co](http://fullwindsor.co)
+For different column widths simply include the appropriate fraction (like <code>@include col(oneFourth);</code> or <code>@include col(threeFifths);</code>). Check out the _bits.scss file for the full list of available columns.
+
+### Varying column widths
+
+What if, for example, in your grid, you want one column of 1/2 and two columns of 1/4 each? Given this markup...
+
+    <section>
+      <div>column 1</div>
+      <div>column 2</div>
+      <div>column 3</div>
+    </section>
+
+...you would accomplish this by doing the following in the global.scss file.
+
+    section {
+      @extend %edge;
+      div {
+        @include col(oneHalf, 1); // sets the first column to 1/2 (50%) wide
+        @include col(oneFourth, 2); // sets the second column to 1/4 (25%) wide
+        @include col(oneFourth, 3); // sets the second column to 1/4 (25%) wide
+      }
+    } 
+
+Of course the key here is the <code>@include col(oneHalf, 1);</code> where the number <code>1</code> indicates which column you are targeting.
+
+### Target specific columns
+
+Continuing from the previous example, you can add styles to specific columns by removing the semicolon and adding brackets. This code adds a red background to the first column, a green background to the second, and a blue background to the third.
+
+     section {
+      @extend %edge;
+      div {
+        @include col(oneHalf, 1) {
+            background-color: red;
+        }
+        @include col(oneFourth, 2) {
+            background-color: green;
+        }
+        @include col(oneFourth, 3) {
+            background-color: blue;
+        }
+      }   
+    }
