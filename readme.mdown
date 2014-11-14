@@ -1,6 +1,6 @@
-# Start SASS framework
+# Semantic, responsive grid system
 
-We developed this framework / starter code with the goal of being as semantic as possible while minimizing CSS bloat. This system allows one to write classes and IDs that are descriptive to the content, as opposed to style attributes like <code>.red</code>, or width of columns like <code>.column-md-1</code>. This way, updates to the content or media queries that change the layout don't render the class names meanliness. 
+We developed this system with the goal of being as semantic as possible while minimizing CSS bloat. This allows one to write classes and IDs that are descriptive to the content, as opposed to style attributes like <code>.red</code>, or width of columns like <code>.column-md-1</code>. This way, updates to the content or media queries that change the layout don't render the class names meanliness. 
 
 Essentially we're keeping the defnition of page layout out of the markup and in the stylesheet. Note: this systems relies heavily on SASS.
 
@@ -29,12 +29,12 @@ Start by defining the type of grid in your styles using <code>@extend</code>. In
       @extend %edge;
     } 
 
-Because we want the four <code>div</code>s to be in fouths, we target the <code>div</code>s within <code>section</code> and add <code>@include col(oneThird);</code> to make them into columns.
+Because we want the four <code>div</code>s to be in fouths, we target the <code>div</code>s within <code>section</code> and add <code>@include col(oneFourth);</code> to make them into columns.
 
     section {
       @extend %edge;
       div {
-        @include col(oneThird);
+        @include col(oneFourth);
       }
     } 
 
@@ -44,7 +44,9 @@ To apply "gutters" or "inset," you would use <code>@extend %gutters</code> and <
 
 ### Column widths
 
-For different column widths simply include the appropriate fraction (like <code>@include col(oneFourth);</code> or <code>@include col(threeFifths);</code>). Check out the _bits.scss file for the full list of available columns.
+For different column widths simply spell out the desired column width in fractions within the include. For example <code>@include col(oneThird)</code> or <code>@include col(threeFifths)</code>. 
+
+Check out the _bits.scss file for the full list of available columns. Make sure to use the correct capitalization&mdash;lowercase first then uppercase.
 
 ### Varying column widths
 
@@ -63,7 +65,7 @@ What if, for example, in your grid, you want one column of 1/2 and two columns o
       div {
         @include col(oneHalf, 1); // sets the first column to 1/2 (50%) wide
         @include col(oneFourth, 2); // sets the second column to 1/4 (25%) wide
-        @include col(oneFourth, 3); // sets the second column to 1/4 (25%) wide
+        @include col(oneFourth, 3); // sets the third column to 1/4 (25%) wide
       }
     } 
 
